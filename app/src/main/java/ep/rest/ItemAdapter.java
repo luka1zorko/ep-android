@@ -28,8 +28,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         final TextView tvName = (TextView) convertView.findViewById(R.id.tv_name);
         final TextView tvPrice = (TextView) convertView.findViewById(R.id.tv_price);
 
-        tvName.setText(item.name);
-        tvPrice.setText(String.format(Locale.ENGLISH, "%.2f EUR", item.price));
+        tvName.setText(item.Item_Name);
+        tvPrice.setText(String.format(Locale.ENGLISH, "%.2f EUR", item.Item_Price));
 
         return convertView;
     }

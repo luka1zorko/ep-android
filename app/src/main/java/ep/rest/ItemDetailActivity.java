@@ -38,6 +38,7 @@ public class ItemDetailActivity extends AppCompatActivity implements Callback<It
 
         tvItemDetail = (TextView) findViewById(R.id.tv_item_detail);
 
+        /*
         fabEdit = (FloatingActionButton) findViewById(R.id.fab_edit);
         fabEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +58,14 @@ public class ItemDetailActivity extends AppCompatActivity implements Callback<It
                 dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteBook();
+                        deleteItem();
                     }
                 });
                 dialog.setNegativeButton("Cancel", null);
                 dialog.create().show();
             }
         });
-
+        */
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -74,14 +75,14 @@ public class ItemDetailActivity extends AppCompatActivity implements Callback<It
         }
     }
 
-    private void deleteBook() {
-        ItemService.getInstance().delete(item.id).enqueue(new Callback<Void>() {
+    private void deleteItem() {
+        ItemService.getInstance().delete(item.Item_Id).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Log.i(TAG, "Deletion succeeded");
                 final Intent intent = new Intent(ItemDetailActivity.this, MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(ItemDetailActivity.this, "Deleted: " + item.name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ItemDetailActivity.this, "Deleted: " + item.Item_Name, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -98,8 +99,8 @@ public class ItemDetailActivity extends AppCompatActivity implements Callback<It
         Log.i(TAG, "Got result: " + item);
 
         if (response.isSuccessful()) {
-            tvItemDetail.setText(item.description);
-            toolbarLayout.setTitle(item.name);
+            tvItemDetail.setText(item.Item_Description);
+            toolbarLayout.setTitle(item.Item_Name);
         } else {
             String errorMessage;
             try {

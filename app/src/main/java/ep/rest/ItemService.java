@@ -15,7 +15,8 @@ import retrofit2.http.Path;
 
 public class ItemService {
     interface RestApi {
-        String URL = "http://10.0.2.2:80/netbeans/mvc-rest/api/";
+        String URL = "http://10.0.2.2:80/netbeans/ep-server/api/";
+        //String URL = "http://10.0.2.2:80/netbeans/mvc-rest/api/";
 
         @GET("items")
         Call<List<Item>> getAll();

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Ite
                 final Item Item = adapter.getItem(i);
                 if (Item != null) {
                     final Intent intent = new Intent(MainActivity.this, ItemDetailActivity.class);
-                    intent.putExtra("ep.rest.id", Item.id);
+                    intent.putExtra("ep.rest.id", Item.Item_Id);
                     startActivity(intent);
                 }
             }
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Ite
             }
         });
 
+        /*
         button = (Button) findViewById(R.id.add_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Ite
                 startActivity(intent);
             }
         });
-
+        */
         ItemService.getInstance().getAll().enqueue(MainActivity.this);
     }
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Ite
 
         if (response.isSuccessful()) {
             Log.i(TAG, "Hits: " + hits.size());
+            Log.i(TAG,"Response: " + response.body());
             adapter.clear();
             adapter.addAll(hits);
         } else {

@@ -38,9 +38,9 @@ public class ItemFormActivity extends AppCompatActivity
         final Intent intent = getIntent();
         item = (Item) intent.getSerializableExtra("ep.rest.item");
         if (item != null) {
-            name.setText(item.name);
-            price.setText(String.valueOf(item.price));
-            description.setText(item.description);
+            name.setText(item.Item_Name);
+            price.setText(String.valueOf(item.Item_Price));
+            description.setText(item.Item_Description);
         }
     }
 
@@ -53,7 +53,7 @@ public class ItemFormActivity extends AppCompatActivity
         if (item == null) { // dodajanje
             ItemService.getInstance().insert(itemName, itemPrice, itemDescription).enqueue(this);
         } else { // urejanje
-            ItemService.getInstance().update(item.id, itemName, itemPrice, itemDescription).enqueue(this);
+            ItemService.getInstance().update(item.Item_Id, itemName, itemPrice, itemDescription).enqueue(this);
         }
     }
 
@@ -70,7 +70,7 @@ public class ItemFormActivity extends AppCompatActivity
                 id = Integer.parseInt(parts[parts.length - 1]);
             } else {
                 Log.i(TAG, "Editing saved.");
-                id = item.id;
+                id = item.Item_Id;
             }
             final Intent intent = new Intent(this, ItemDetailActivity.class);
             intent.putExtra("ep.rest.id", id);
