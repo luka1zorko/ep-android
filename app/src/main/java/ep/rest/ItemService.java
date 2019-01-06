@@ -24,7 +24,6 @@ public class ItemService {
         @GET("items/{id}")
         Call<Item> get(@Path("id") int id);
 
-
         @FormUrlEncoded
         @POST("items")
         Call<Void> insert(@Field("name") String name,
